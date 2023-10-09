@@ -1,0 +1,450 @@
+Project Objective
+👉The project aims to create an Amazon Prime Video clone application using
+HTML, CSS, JavaScript, and React. The app will replicate the core functionalities
+of Amazon Prime Video, allowing users to stream and watch a wide range of
+movies, TV shows, and original content.
+Project Context
+👉Amazon Prime Video is a popular streaming platform that offers a vast library
+of movies, TV shows, and original content for subscribers to watch online. The
+Amazon Prime Video clone will offer users a similar experience, enabling them
+to explore, stream, and enjoy their favorite content.
+👉Through this project, we’ll discover a way to build a functional clone of
+Amazon Prime Video website
+ON THIS PAGE
+Project Steps
+Export
+Tech stack Prerequisite: HTML, CSS, JavaScript, React
+Setting up Headers &amp; Making a request
+👉To access a protected route, you must include the JWT token in your request
+headers.
+👉The token should be included as a Bearer token.
+headers: {
+'Authorization': 'Bearer YOUR_JWT_TOKEN',
+'projectId': 'YOUR_PROJECT_ID'
+}
+👉To know, what is JWT and how JWT works? Watch: What Is JWT and Why
+Should You Use JWT
+👉How to Use JWTAuthorization using Postman? Watch: How to Use JWT
+Authorization
+👉With the header set up, make a request to the desired endpoint.
+If your token is valid, you should receive a successful response. Otherwise, the
+server will return an error.
+Example Requests:
+Using JavaScript's Fetch API:
+fetch('https://api.example.com/protected-route', { method: 'GET',
+headers: {
+'Authorization': 'Bearer YOUR_JWT_TOKEN' // this is how you set JWT token
+}
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error))
+--->Project ID here is the hash of the Playground URL
+--->Example: https://my.newtonschool.co/playground/project/f104bi07c490
+--->Your Corresponding Project ID would be: f104bi07c490
+---> Note: These projectId will be unique for each question.
+ON THIS PAGE
+Project Steps
+Common Issues withAPI
+1. Token Expiry: JWT tokens often have an expiration time. If you receive an
+error indicating that the token has expired, you'll need to re-authenticate and
+obtain a new token.
+2. User Changes Password: If a user changes their password, all tokens issued
+before the change will become invalid. You'll need to log in again and get a new
+token.
+3. Invalid Token: If you tamper with the token or try to forge it, the server will
+identify it and deny the request.
+Project Steps
+Step 01: Set up the project and UI design
+👉Create a new React project using either create-react-app or vite.
+👉Organize the project directory structure, including subdirectories for
+components, styles, and other necessary files.
+👉Install required dependencies, such as react-router.
+👉The UI of this project requires huge amount of CSS to make the application
+look alike the real one.
+👉It is better to use external CSS libraries like Material UI
+(https://mui.com/material-ui/)which is a popular React component library that
+follows Google’s Material Design guidelines. It provides a set of ready-made
+components for various UI elements which can help us to create complex UI in
+easier way by using the predefined CSS classes.
+👉The UI of the application must be responsive in nature.
+Step 02: Navigation Bar Design
+ON THIS PAGE
+Project Steps
+👉The website should have a navigation section.
+👉The navigation bar should have the logo of your website, which should point
+toward the home page of your website.
+👉Add different options to the navbar, like Home, Categories, Live TV, etc. Add a
+magnifying glass icon, that will be for searching, as well. This allows users to
+easily search for movies and TV shows based on keywords.
+👉There should be a user icon with the user’s name, once clicked the button, it
+should display Login/Logout, Subscriptions Options as a dropdown
+--> If the user is not logged in point toward the Login page once clicked on the
+"Login".
+--> If the user is logged in, point towards the Logout page once clicked on the
+"Logout"
+--> Once clicked on the Subscription, it redirect to the Subscription page details.
+👉The Categories and user icon should be a dropdown menu, displaying
+different categories of the movies and managing account options.
+Step 03: Home Page and Featured Content
+ON THIS PAGE
+Project Steps
+👉Create a visually appealing home page that immediately captures users'
+attention.
+👉Display a dynamic carousel showcasing featured movies, TV shows, and
+original content.
+👉Fetch and display content listings from the database or API to provide users
+with a glimpse of available options.
+👉Displaying featured movies by categories, new releases, recommended
+movie, etc.
+👉Prominently highlight Amazon Prime Video's original content and exclusives
+on the home page to attract user interest.
+👉Add the animation, shown below, on every movie as the mouse hovers over
+it. Display the Duration, Genres, Images, and a Watchlist option, allowing user
+to add the movie to watch later section.
+👉The "+" sign should add the movie or TV show to the My List section.
+👉Use the following APIs to fetch movie data:
+👉Get list of shows:
+Method: GET
+URL: https://academics.newtonschool.co/api/v1/ott/show
+Headers: { projectId: Your projectId }
+👉Get show using id:
+Method: GET
+URL: https://academics.newtonschool.co/api/v1/ott/show/:id
+Headers: { projectId: Your projectId }
+👉Pagination:
+Pagination can be handled with page and limit parameters. For instance, GET
+/api/v1/ott/show?page=2&limit=10 would get the second page of results, with
+10 results per page.
+https://academics.newtonschool.co/api/v1/ott/show?page=2&limit=10
+ON THIS PAGE
+Project Steps
+Step 04: Content Details
+👉Design an elegant content details page with a large backdrop image and
+comprehensive information about the selected movie or TV show.
+👉Add description, rating, duration, release year, genres properties of the
+movie. Allow users to add the movie in the watchlist section.
+👉Craft a sophisticated recommendation section that analyzes genres of the
+movie or TV show and preferences to suggest relevant movies and TV shows.
+👉Prominently highlight Amazon Prime Video's original content.
+Get Content Details of a particular show
+👉Get show using id:
+Method: GET
+URL: https://academics.newtonschool.co/api/v1/ott/show/:id
+Headers: { projectId: Your projectId }
+ON THIS PAGE
+Project Steps
+Step 05: Content Categories and Search
+👉Include a prominently placed search bar that remains accessible across
+pages, allowing users to easily find specific movies or TV shows.
+👉Implement a predictive search feature that displays search suggestions as
+users type.
+👉Endpoints for Searching and Filter Functionality
+👉Search and Filter shows:
+Method: GET
+URL: https://academics.newtonschool.co/api/v1/ott/show?filter={"field" : "value"}
+Headers: { projectId: Your projectId }
+Example:
+--> https://academics.newtonschool.co/api/v1/ott/show?filter={"type" : "web series"}
+endpoint to fetch shows, which are web series.
+ON THIS PAGE
+Project Steps
+Step 06: Register and Login
+👉Before the User can add content to his list, check if the user is registered and
+login into the application. Since we are working with the Frontend only, use the
+below routes to Register the user, and then login the user. Ask the user for it's
+first name, last name, email, and password.
+👉If the user is not login, redirect the user toward the login page.
+👉Also, make sure users are logged in to access the movies or TV shows. If a
+user attempts to play a movie or TV show without logging in, display a modal
+prompting them to either log in if they have an account or register if they're new
+to the platform. This helps in encouraging user engagement and capturing
+potential new users.
+👉Add reset password functionality.
+AUTH-RELATED APIs (Protected Routes):
+👉Login
+Method: POST
+URL: https://academics.newtonschool.co/api/v1/user/login
+Description: login route accepts { email , password }
+Body: {
+email: "test1@gmail.com",
+"password : "12345",
+"appType : "ott",
+}
+URL: https://academics.newtonschool.co/api/v1/user/signup
+Description: signup route accepts { name , email , password }
+Body: {
+"name" :"test",
+"email : "test@gmail.com",
+"password : "12345",
+"appType : "ott",
+}
+👉Update Password
+Method: PATCH
+URL: https://academics.newtonschool.co/api/v1/user/updateMyPassword
+Description: Update Password route accepts { email , password ,
+passwordCurrent }.This route is for when user know their password and want to
+change it
+Headers: { projectId: Your projectId }
+Body: {
+"name":"test6969",
+"email" : "test6969@gmail.com",
+"passwordCurrent" : "12345",
+"password":"1234567890",
+"appType : "ott",
+}
+Step 07: Watchlist
+👉Once the "Watchlist" link is clicked it should redirect to this.
+👉Enable users to add content to their personal watchlist, allowing them to save
+and remove movies and TV shows for later viewing.
+👉Implement a "Watchlist" section that aggregates all the content users have
+marked as their favorites for easy access.
+EndPoints:
+-->Get My WatchList (Protected Routes)Method: GET
+URL: https://academics.newtonschool.co/api/v1/ott/watchlist/like
+headers:
+{
+'Authorization': 'Bearer YOUR_JWT_TOKEN',
+'projectID': 'Your Project ID'
+}
+ON THIS PAGE
+Project Steps
+Description: This API is used to get shows added into the watchList
+-->Add/Remove Show in watchlist (Protected Routes)Method: PATCH
+URL: https://academics.newtonschool.co/api/v1/ott/watchlist/like
+headers: {
+'Authorization': 'Bearer YOUR_JWT_TOKEN',
+projectID': 'Your Project ID'
+}
+Body: {
+"showId" : showId,
+}
+Description: This API serves the dual purpose of adding and removing shows
+from a wishlist. For example, when the API is triggered with an ID, it adds the
+corresponding show to the watchlist. Conversely, if the API is subsequently
+invoked with the same ID, the show will be removed from the watchlist.
+Kindly refer to the link given
+below: https://drive.google.com/file/d/1dnmVLyT_zsb0ve-Z5zctILO2_n7TZICA/view?
+usp=sharing
+
+Step 08: User Profile and Settings Page
+In this step, we will create the User Profile section, allowing users to view and
+manage their account information, ProfileImage, watchlist, and other
+personalized settings on the Amazon Clone.
+👉Design a user profile page that displays the user's profile picture, name, email
+ON THIS PAGE
+Project Steps
+address, and other relevant account information.
+👉Include options to edit profile details and change the profile picture.
+👉Endpoints to update My data
+Method: PATCH
+URL: https://academics.newtonschool.co/api/v1/user/updateMyPassword
+Description: UpdateMe route accepts { name, profileImage, address, phone,
+paymentDetails} of the user. This route cant change the password for an user.
+**Changing Email is prohibited !**
+Body:
+{
+"name":"test",
+"email" : "test@gmail.com",
+}
+👉Upadate Profile Image
+Method: PATCH
+URL: https://academics.newtonschool.co/api/v1/user/updateProfileImage
+Description: updateProfileImage route accepts {profileImage} of the user. This
+route can't update other info for an user
+FormData:
+{
+"profileImage" : file.png
+}
+Example :
+const response = await fetch(url, {
+method: 'PATCH',
+body: formData,
+headers:
+{
+"Authorization": "Bearer JWT_TOKEN",
+"projectId": {projectId}
+}
+})
+Step 09:Add Subscription Page
+Project Checklist
+👉Set up the project and UI design, Navigation Bar Design, Home Page and
+Featured Content
+👉Content Details, Content Categories and Search
+👉Register and Login, Watchlist
+ON THIS PAGE
+Project Steps
+👉Add Subscription Page
+👉Add Profile Page
+NOTE
+In our project, we encounter a scenario where the default API response for "get
+list" or "search/filter" operations displays only 100 records. However, our
+database encompasses a total of over 1000 show records. To effectively
+showcase this extensive dataset, you need to incorporate pagination
+techniques.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const responsive = {
+//     superLargeDesktop: {
+//         breakpoint: { max: 4000, min: 3000 },
+//         items: 4
+//     },
+//     desktop: {
+//         breakpoint: { max: 3000, min: 1024 },
+//         items: 4
+//     },
+//     tablet: {
+//         breakpoint: { max: 1024, min: 464 },
+//         items: 2
+//     },
+//     mobile: {
+//         breakpoint: { max: 464, min: 0 },
+//         items: 1
+//     }
+// };
+
+
+
+
+// export const responsive3 = {
+//     superLargeDesktop: {
+//         breakpoint: { max: 4000, min: 3000 },
+//         items: 3
+//     },
+//     desktop: {
+//         breakpoint: { max: 3000, min: 1024 },
+//         items: 3
+//     },
+//     tablet: {
+//         breakpoint: { max: 1024, min: 464 },
+//         items: 2
+//     },
+//     mobile: {
+//         breakpoint: { max: 464, min: 0 },
+//         items: 1
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { responsive } from './Carouseldata';
+// import Carousel from 'react-multi-carousel';
+
+// function Index() {
+//     const [HallShowdata, setHallShowdata] = useState([]);
+
+    
+  
+//   function fetchhallData() {
+//     axios
+//     .post('http://127.0.0.1:8000/api/AddOn', data, {
+//       headers: { 'Content-Type': 'multipart/form-data' ,'Authorization':"Bearer "+token},
+//     })
+//       .then((res) => {
+//         const data = res.data;
+//         console.log(data);
+//         setHallShowdata(data);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }
+
+//   useEffect(() => {
+  
+//       fetchhallData();
+    
+//   }, [])
+//   return (
+//     <div>
+        
+
+
+
+
+//         <Carousel responsive={responsive}>
+
+           
+
+
+// {HallShowdata.map((row) => {
+// return (
+// <a href={'/description/' + row.id} style={{ textDecoration: 'none', color: 'black' }}>
+// <div class="card mr-2 text-center" style={{ height: "320px" }}>
+// <img src={`http://localhost:8000/hall_upload/${row.images}`} alt="#" style={{ height: "240px" }} />
+// <div class="card-body">
+// <h5 class="card-title"><b>{row.hname}</b></h5>
+// <p class="card-text text-danger">Venues / Vendors</p>
+// </div>
+// </div>
+// </a>
+// );
+// })}
+
+
+// </Carousel>
+
+//     </div>
+//   )
+// }
+
+// export default Index
